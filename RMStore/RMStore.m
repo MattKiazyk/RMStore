@@ -113,9 +113,9 @@ typedef void (^RMStoreSuccessBlock)();
     NSInteger _pendingRestoredTransactionsCount;
     BOOL _restoredCompletedTransactionsFinished;
     
-    SKReceiptRefreshRequest *_refreshReceiptRequest;
-    void (^_refreshReceiptFailureBlock)(NSError* error);
-    void (^_refreshReceiptSuccessBlock)();
+//    SKReceiptRefreshRequest *_refreshReceiptRequest;
+//    void (^_refreshReceiptFailureBlock)(NSError* error);
+//    void (^_refreshReceiptSuccessBlock)();
     
     void (^_restoreTransactionsFailureBlock)(NSError* error);
     void (^_restoreTransactionsSuccessBlock)();
@@ -255,20 +255,20 @@ typedef void (^RMStoreSuccessBlock)();
     return url;
 }
 
-- (void)refreshReceipt
-{
-    [self refreshReceiptOnSuccess:nil failure:nil];
-}
-
-- (void)refreshReceiptOnSuccess:(RMStoreSuccessBlock)successBlock
-                        failure:(RMStoreFailureBlock)failureBlock
-{
-    _refreshReceiptFailureBlock = failureBlock;
-    _refreshReceiptSuccessBlock = successBlock;
-    _refreshReceiptRequest = [[SKReceiptRefreshRequest alloc] initWithReceiptProperties:@{}];
-    _refreshReceiptRequest.delegate = self;
-    [_refreshReceiptRequest start];
-}
+//- (void)refreshReceipt
+//{
+//    [self refreshReceiptOnSuccess:nil failure:nil];
+//}
+//
+//- (void)refreshReceiptOnSuccess:(RMStoreSuccessBlock)successBlock
+//                        failure:(RMStoreFailureBlock)failureBlock
+//{
+////    _refreshReceiptFailureBlock = failureBlock;
+////    _refreshReceiptSuccessBlock = successBlock;
+////    _refreshReceiptRequest = [[SKReceiptRefreshRequest alloc] initWithReceiptProperties:@{}];
+////    _refreshReceiptRequest.delegate = self;
+////    [_refreshReceiptRequest start];
+//}
 
 #pragma mark Product management
 
@@ -294,8 +294,8 @@ typedef void (^RMStoreSuccessBlock)();
     [self addStoreObserver:observer selector:@selector(storeProductsRequestFinished:) notificationName:RMSKProductsRequestFinished];
     [self addStoreObserver:observer selector:@selector(storePaymentTransactionFailed:) notificationName:RMSKPaymentTransactionFailed];
     [self addStoreObserver:observer selector:@selector(storePaymentTransactionFinished:) notificationName:RMSKPaymentTransactionFinished];
-    [self addStoreObserver:observer selector:@selector(storeRefreshReceiptFailed:) notificationName:RMSKRefreshReceiptFailed];
-    [self addStoreObserver:observer selector:@selector(storeRefreshReceiptFinished:) notificationName:RMSKRefreshReceiptFinished];
+//    [self addStoreObserver:observer selector:@selector(storeRefreshReceiptFailed:) notificationName:RMSKRefreshReceiptFailed];
+//    [self addStoreObserver:observer selector:@selector(storeRefreshReceiptFinished:) notificationName:RMSKRefreshReceiptFinished];
     [self addStoreObserver:observer selector:@selector(storeRestoreTransactionsFailed:) notificationName:RMSKRestoreTransactionsFailed];
     [self addStoreObserver:observer selector:@selector(storeRestoreTransactionsFinished:) notificationName:RMSKRestoreTransactionsFinished];
 }
@@ -306,8 +306,8 @@ typedef void (^RMStoreSuccessBlock)();
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKProductsRequestFinished object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKPaymentTransactionFailed object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKPaymentTransactionFinished object:self];
-    [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRefreshReceiptFailed object:self];
-    [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRefreshReceiptFinished object:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRefreshReceiptFailed object:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRefreshReceiptFinished object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRestoreTransactionsFailed object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRestoreTransactionsFinished object:self];
 }
